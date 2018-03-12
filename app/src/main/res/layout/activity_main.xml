@@ -8,9 +8,9 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_launcher_foreground"
         android:scaleType="centerCrop"
-        android:contentDescription="@string/main_background"/>
+        android:contentDescription="@string/main_background"
+        android:src="@drawable/bg__img" />
 
     <TextView
         android:id="@+id/textView"
@@ -40,5 +40,17 @@
         android:text="@string/button_title"
         android:background="@color/colorAccent"
         android:textColor="@color/colorTextIcons" />
+
+    <EditText
+        android:id="@+id/locationEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/findRestaurantsButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorTextIcons"
+        android:ems="6"
+        android:padding="5dp"
+        android:hint="@string/zip_hint" />
 
 </RelativeLayout>
