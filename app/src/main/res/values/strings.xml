@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">MyRestaurant</string>
+    <string name="app_name">My Restaurants</string>
+    <string name="main_header">Ready Player One?</string>
+    <string name="main_subheader">If you are not ready, I don\'t care</string>
+    <string name="button_title">Find Restaurants</string>
+    <string name="main_background">Main Activity Background Image</string>
 </resources>
