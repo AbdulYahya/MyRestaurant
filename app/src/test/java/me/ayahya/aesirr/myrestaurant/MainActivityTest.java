@@ -1,6 +1,7 @@
 package me.ayahya.aesirr.myrestaurant;
 
 import android.content.Intent;
+import android.os.Build;
 import android.widget.TextView;
 
 import org.junit.Before;
@@ -11,13 +12,12 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowActivity;
 
-import static android.os.Build.VERSION_CODES.O;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = O)
+@Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.O)
 
 public class MainActivityTest {
     private MainActivity mainActivity;

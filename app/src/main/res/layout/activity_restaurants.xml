@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/restaurant_act_header"
@@ -15,6 +14,25 @@
         android:textColor="@color/colorTextIcons"
         android:textSize="40sp" />
 
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/restaurant_act_header"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/restaurant_act_header"
+        android:layout_above="@+id/restaurant_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
     <Button
         android:id="@+id/restaurant_button"
         android:layout_width="match_parent"
@@ -24,12 +42,5 @@
         android:text="@string/button_title"
         android:textColor="@color/colorTextIcons"
         />
-
-    <TextView
-        android:id="@+id/locationTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
