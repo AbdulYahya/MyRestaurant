@@ -9,34 +9,33 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
-    private static final String TAG = MainActivity.class.getSimpleName();
-    private EditText locationEditText;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    @BindView(R.id.findRestaurantsButton) Button findRestaurantsButton;
+    @BindView(R.id.locationEditText) EditText locationEditText;
+    @BindView(R.id.mainHeaderTextView) TextView mainHeaderFontTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Button findRestaurantButton;
-        TextView fontTextView;
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        fontTextView = findViewById(R.id.mainHeaderTextView);
         Typeface caviarDreamsFont = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
-        fontTextView.setTypeface(caviarDreamsFont);
+        mainHeaderFontTextView.setTypeface(caviarDreamsFont);
 
-        locationEditText = findViewById(R.id.locationEditText);
-        findRestaurantButton = findViewById(R.id.findRestaurantsButton);
+        findRestaurantsButton.setOnClickListener(this);
+    }
 
-        findRestaurantButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String location = locationEditText.getText().toString();
-                Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
-                intent.putExtra("location", location);
-                startActivity(intent);
-            }
-        });
+    @Override
+    public void onClick(View view) {
+        if (view == findRestaurantsButton) {
+            String location = locationEditText.getText().toString();
+            Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
+            intent.putExtra("location", location);
+            startActivity(intent);
+        }
     }
 }

@@ -7,4 +7,21 @@
     <string name="main_background">Main Activity Background Image</string>
     <string name="zip_hint">Enter Zip code</string>
     <string name="here_be_restaurants">Here are all the restaurants near: %1$s</string>
+    <string-array name="static_restaurants">
+        <item>Mi Mero Mole</item>
+        <item>Mother's Bistro</item>
+        <item>Life of Pie</item>
+        <item>Screen Door</item>
+        <item>Luc Lac</item>
+        <item>Sweet Basil</item>
+        <item>Slappy Cakes</item>
+        <item>Equinox</item>
+        <item>Miss Delta's</item>
+        <item>Andina</item>
+        <item>Lardo</item>
+        <item>Portland City Grill</item>
+        <item>Fat Head's Brewery</item>
+        <item>Chipotle</item>
+        <item>Kentucky Fried Chicken</item>
+    </string-array>
 </resources>
