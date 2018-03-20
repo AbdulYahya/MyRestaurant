@@ -52,4 +52,5 @@ public class RestaurantsActivity extends AppCompatActivity {
         String setLocationText = getString(R.string.here_be_restaurants, location);
         locationTextView.setText(setLocationText);
     }
+
 }

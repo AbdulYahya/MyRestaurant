@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="me.ayahya.aesirr.myrestaurant">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,9 +23,9 @@
         <activity android:name=".RestaurantsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="me.ayahya.aesirr.myrestaurant.MainActivity">
-            </meta-data>
+                android:value="me.ayahya.aesirr.myrestaurant.MainActivity"></meta-data>
         </activity>
+
     </application>
 
 </manifest>
