@@ -1,4 +1,4 @@
-package me.ayahya.aesirr.myrestaurant;
+package me.ayahya.aesirr.myrestaurant.services;
 
 import android.util.Log;
 
@@ -9,6 +9,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import me.ayahya.aesirr.myrestaurant.Constants;
+import me.ayahya.aesirr.myrestaurant.models.Restaurant;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.HttpUrl;
@@ -19,7 +21,7 @@ import okhttp3.Response;
 public class YelpService {
     private static final String TAG = "YelpService";
 
-    protected static void findRestaurants(String location, Callback callback) {
+    public static void findRestaurants(String location, Callback callback) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
         HttpUrl.Builder yelpUrlBuilder = HttpUrl.parse(Constants.YELP_BASE_URL).newBuilder();
@@ -38,7 +40,7 @@ public class YelpService {
         call.enqueue(callback);
     }
 
-    protected ArrayList<Restaurant> processResults(Response response) {
+    public ArrayList<Restaurant> processResults(Response response) {
         ArrayList<Restaurant> restaurants = new ArrayList<>();
 
         try {

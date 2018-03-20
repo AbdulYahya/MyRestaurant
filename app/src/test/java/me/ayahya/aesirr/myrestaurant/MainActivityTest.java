@@ -12,6 +12,9 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowActivity;
 
+import me.ayahya.aesirr.myrestaurant.ui.MainActivity;
+import me.ayahya.aesirr.myrestaurant.ui.RestaurantsActivity;
+
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;

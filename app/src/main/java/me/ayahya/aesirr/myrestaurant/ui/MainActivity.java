@@ -1,4 +1,4 @@
-package me.ayahya.aesirr.myrestaurant;
+package me.ayahya.aesirr.myrestaurant.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.ayahya.aesirr.myrestaurant.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.findRestaurantsButton) Button findRestaurantsButton;

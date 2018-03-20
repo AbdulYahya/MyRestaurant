@@ -1,4 +1,4 @@
-package me.ayahya.aesirr.myrestaurant;
+package me.ayahya.aesirr.myrestaurant.models;
 
 import java.util.ArrayList;
 

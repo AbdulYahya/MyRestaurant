@@ -5,6 +5,8 @@ import android.support.test.rule.ActivityTestRule;
 import org.junit.Rule;
 import org.junit.Test;
 
+import me.ayahya.aesirr.myrestaurant.ui.MainActivity;
+
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.typeText;
