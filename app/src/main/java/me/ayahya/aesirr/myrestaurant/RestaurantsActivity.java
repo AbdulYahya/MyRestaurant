@@ -11,8 +11,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class RestaurantsActivity extends AppCompatActivity {
     public static final String TAG = RestaurantsActivity.class.getSimpleName();
@@ -51,6 +56,26 @@ public class RestaurantsActivity extends AppCompatActivity {
         String location = intent.getStringExtra("location");
         String setLocationText = getString(R.string.here_be_restaurants, location);
         locationTextView.setText(setLocationText);
+        getRestaurants(location);
     }
 
+    private void getRestaurants(String location) {
+        final YelpService yelpService = new YelpService();
+        YelpService.findRestaurants(location, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    String JSONData = response.body().string();
+                    Log.v(TAG, JSONData);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 }

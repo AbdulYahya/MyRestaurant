@@ -11,7 +11,7 @@ import okhttp3.Request;
 public class YelpService {
     private static final String TAG = "YelpService";
 
-    public static void findRestaurants(String location, Callback callback) {
+    protected static void findRestaurants(String location, Callback callback) {
         OkHttpClient client = new OkHttpClient.Builder()
                 .build();
         HttpUrl.Builder yelpUrlBuilder = HttpUrl.parse(Constants.YELP_BASE_URL).newBuilder();
@@ -22,20 +22,11 @@ public class YelpService {
 
         Request request = new Request.Builder()
                 .url(url)
-                .header("Authorization", Constants.YELP_API_KEY)
-                .build();
-        Log.d(TAG, "Request:header" + request);
-
-        Request testRequest = new Request.Builder()
-                .url(url)
                 .addHeader("Authorization", Constants.YELP_API_KEY)
                 .build();
-        Log.d(TAG, "testRequest:addHeader" + testRequest);
+        Log.d(TAG, "testRequest:addHeader" + request);
 
         Call call = client.newCall(request);
         call.enqueue(callback);
-
-        Call testCall = client.newCall(testRequest);
-        testCall.enqueue(callback);
     }
 }
