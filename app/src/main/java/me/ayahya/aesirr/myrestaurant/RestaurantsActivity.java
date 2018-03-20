@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,14 +36,14 @@ public class RestaurantsActivity extends AppCompatActivity {
 
 //        MyRestaurantsArrayAdapter adapter = new MyRestaurantsArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants);
 //        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String restaurant = ((TextView)view).getText().toString();
-                Toast.makeText(RestaurantsActivity.this, restaurant, Toast.LENGTH_LONG).show();
-                Log.wtf(TAG, "In the OnItemClick Listener");
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                String restaurant = ((TextView)view).getText().toString();
+//                Toast.makeText(RestaurantsActivity.this, restaurant, Toast.LENGTH_LONG).show();
+//                Log.wtf(TAG, "In the OnItemClick Listener");
+//            }
+//        });
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
@@ -60,17 +61,27 @@ public class RestaurantsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try {
-                    String JSONData = response.body().string();
-                    if (response.isSuccessful()) {
-                        Log.v(TAG, JSONData);
-                        restaurants = yelpService.processResults(response);
-                    }
+            public void onResponse(Call call, Response response) {
+                restaurants = yelpService.processResults(response);
+                RestaurantsActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] restaurantNames = new String[restaurants.size()];
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                        // EXAMPLE OF HOW WE COULD MAKE USE OF A FOREACH LOOP
+                        // API 15 DOES NOT SUPPORT THIS
+//                        ArrayList<String> restaurantNames = new ArrayList<>();
+//                        restaurants.forEach(restaurants -> restaurantNames.add(restaurants.getName());
+
+                        for (final String restaurant: restaurantNames) {
+                            restaurantNames[Arrays.asList(restaurantNames).indexOf(restaurant)] = restaurants.get(Arrays.asList(restaurantNames).indexOf(restaurant)).getName();
+                        }
+
+                        ArrayAdapter adapter = new ArrayAdapter(RestaurantsActivity.this,
+                                android.R.layout.simple_list_item_1, restaurantNames);
+                        listView.setAdapter(adapter);
+                    }
+                });
             }
         });
     }

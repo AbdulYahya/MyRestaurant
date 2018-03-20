@@ -5,9 +5,9 @@ import android.widget.ArrayAdapter;
 
 public class MyRestaurantsArrayAdapter extends ArrayAdapter{
     private Context context;
-    private Restaurant[] restaurants;
+    private String[] restaurants;
 
-    public MyRestaurantsArrayAdapter(Context context, int resource, Restaurant[] restaurants) {
+    public MyRestaurantsArrayAdapter(Context context, int resource, String[] restaurants) {
         super(context, resource);
         this.context = context;
         this.restaurants = restaurants;
@@ -15,7 +15,7 @@ public class MyRestaurantsArrayAdapter extends ArrayAdapter{
 
     @Override
     public Object getItem(int position) {
-        Restaurant restaurant = restaurants[position];
+        String restaurant = restaurants[position];
         return String.format("%s", restaurant);
     }
 
