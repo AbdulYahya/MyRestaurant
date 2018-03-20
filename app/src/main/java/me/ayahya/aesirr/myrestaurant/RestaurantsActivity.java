@@ -34,17 +34,6 @@ public class RestaurantsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
 
-//        MyRestaurantsArrayAdapter adapter = new MyRestaurantsArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants);
-//        listView.setAdapter(adapter);
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                String restaurant = ((TextView)view).getText().toString();
-//                Toast.makeText(RestaurantsActivity.this, restaurant, Toast.LENGTH_LONG).show();
-//                Log.wtf(TAG, "In the OnItemClick Listener");
-//            }
-//        });
-
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
         String setLocationText = getString(R.string.here_be_restaurants, location);
@@ -68,18 +57,24 @@ public class RestaurantsActivity extends AppCompatActivity {
                     public void run() {
                         String[] restaurantNames = new String[restaurants.size()];
 
-                        // EXAMPLE OF HOW WE COULD MAKE USE OF A FOREACH LOOP
-                        // API 15 DOES NOT SUPPORT THIS
-//                        ArrayList<String> restaurantNames = new ArrayList<>();
-//                        restaurants.forEach(restaurants -> restaurantNames.add(restaurants.getName());
-
-                        for (final String restaurant: restaurantNames) {
-                            restaurantNames[Arrays.asList(restaurantNames).indexOf(restaurant)] = restaurants.get(Arrays.asList(restaurantNames).indexOf(restaurant)).getName();
+                        for (String restaurantName : restaurantNames) {
+                            restaurantNames[Arrays.asList(restaurantNames).indexOf(restaurantName)] =
+                                    restaurants.get(Arrays.asList(restaurantNames).indexOf(restaurantName)).getName();
                         }
 
                         ArrayAdapter adapter = new ArrayAdapter(RestaurantsActivity.this,
                                 android.R.layout.simple_list_item_1, restaurantNames);
                         listView.setAdapter(adapter);
+
+                        for (Restaurant restaurant : restaurants) {
+                            Log.d(TAG, "Restaurant:Name" + restaurant.getName());
+                            Log.d(TAG, "Restaurant:Phone" + restaurant.getPhone());
+                            Log.d(TAG, "Restaurant:Website" + restaurant.getWebsite());
+                            Log.d(TAG, "Restaurant:ImageUrl" + restaurant.getImageUrl());
+                            Log.d(TAG, "Restaurant:Rating" + Double.toString(restaurant.getRating()));
+                            Log.d(TAG, "Restaurant:Address" + android.text.TextUtils.join(", ", restaurant.getAddress()));
+                            Log.d(TAG, "Restaurant:Categories" + restaurant.getCategories());
+                        }
                     }
                 });
             }
