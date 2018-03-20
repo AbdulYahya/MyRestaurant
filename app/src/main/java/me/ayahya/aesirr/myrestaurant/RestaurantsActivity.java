@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,16 +25,7 @@ public class RestaurantsActivity extends AppCompatActivity {
     @BindView(R.id.locationTextView) TextView locationTextView;
     @BindView(R.id.listView) ListView listView;
 
-    private String[] restaurants = new String[] {
-            "Mi Mero Mole", "Mother's Bistro", "Life of Pie", "Screen Door",
-            "Luc Lac", "Sweet Basil", "Slappy Cakes", "Equinox", "Miss Delta's", "Andina",
-            "Lardo", "Portland City Grill", "Fat Head's Brewery", "Chipotle", "Kentucky Fried Chicken"
-    };
-    private String[] cuisines = new String[] {
-            "Vegan Food", "Breakfast", "Fishs Dishs", "Scandinavian",
-            "Coffee", "English Food", "Burgers", "Fast Food", "Noodle Soups",
-            "Mexican", "BBQ", "Cuban", "Bar Food", "Sports Bar", "Breakfast", "Mexican"
-    };
+    public ArrayList<Restaurant> restaurants = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +33,8 @@ public class RestaurantsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
 
-        MyRestaurantsArrayAdapter adapter = new MyRestaurantsArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants, cuisines);
-        listView.setAdapter(adapter);
+//        MyRestaurantsArrayAdapter adapter = new MyRestaurantsArrayAdapter(this, android.R.layout.simple_list_item_1, restaurants);
+//        listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -71,7 +63,11 @@ public class RestaurantsActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 try {
                     String JSONData = response.body().string();
-                    Log.v(TAG, JSONData);
+                    if (response.isSuccessful()) {
+                        Log.v(TAG, JSONData);
+                        restaurants = yelpService.processResults(response);
+                    }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
